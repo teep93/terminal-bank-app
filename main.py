@@ -10,7 +10,7 @@ welcome_ascii = """
  \$$      \$$  \$$$$$$$ \$$  \$$$$$$$  \$$$$$$  \$$  \$$  \$$  \$$$$$$$          \$$$$   \$$$$$$        \$$   \$$ \$$   \$$ \$$         \$$$$$$$   \$$$$$$$ \$$   \$$ \$$   \$$
 """
 
-
+printing_seperator = "----------------------------------------------------------------------------------------------"
 username = ''
 password = ''
 account_list_and_balance = {}
@@ -22,18 +22,22 @@ logged_in = False
 
 
 def logged_out_menu():
+    print(printing_seperator)
     print(welcome_ascii) 
     print('1. Create a new account')
     print('2. Log in')
     print('3. Exit')
+    print(printing_seperator)
 
 def logged_in_menu():
     global first_name, last_name
+    print(printing_seperator)
     print(f'Welcome back, {first_name} {last_name}! What would you like to do today?')
     print('1. View Accounts')
     print('2. Transfer Funds')
     print('3. Open Accounts')
     print('4. Log Out')
+    print(printing_seperator)
 
 def navigate_menu(logged_in):
     while True:
@@ -52,7 +56,11 @@ def navigate_menu(logged_in):
             elif choice == '3':
                 open_product_accounts()
             elif choice == '4':
-                run_logged_out_menu()
+                print(printing_seperator)
+                print("Logging out...")
+                print("Successfully logged out.")
+                print(printing_seperator)
+                navigate_menu(logged_in=False)
             else:
                 print('Invalid choice. Please enter 1, 2, 3, or 4.')
         else:
@@ -65,6 +73,20 @@ def navigate_menu(logged_in):
             else:
                 print('Invalid choice. Please enter 1, 2, or 3.')
 
+
+def view_accounts():
+    if bool(account_list_and_balance):
+        print(account_list_and_balance)
+    else:
+        print(printing_seperator)
+        print("You have no accounts") 
+        print(printing_seperator)    
+
+def transfer_funds():
+    pass
+
+def open_product_accounts():
+    pass
 
     
 
@@ -93,8 +115,10 @@ def create_user_account():
     last_name = input('Enter your last name: ')
     username = input('Enter desired username: ')
     password = input('Enter desired password: ')
+    print(printing_seperator)
     print("Account successfully created!")
     print(f'Name: {first_name} {last_name}, Username: {username}')
+    print(printing_seperator)
     return first_name, last_name, username, password
 
 def display_account_info():
