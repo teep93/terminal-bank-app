@@ -27,7 +27,7 @@ def logged_out_menu():
 
 def logged_in_menu():
     print(welcome_ascii)
-    print(f'Welcome back, {firstname}! What would you like to do today?')
+    print(f'Welcome back,{firstname}! What would you like to do today?')
     print('1. View Accounts')
     print('2. Transfer Funds')
     print('3. Open Accounts')
@@ -71,7 +71,7 @@ def log_in():
     password = input('Enter your password: ')
     if username == username and password == password:
         print('Login successful.')
-        logged_in_menu()
+        navigate_menu(logged_in=True)
     else:    
         print('Invalid username or password. Please try again.')    
 
@@ -79,17 +79,7 @@ def exit():
     print('Exiting...')
     exit()
 
-def run_logged_out_menu():
-    while True:
-        logged_out_menu()
-        choice = get_choice()
 
-
-def run_logged_in_menu():
-    while True:
-        logged_in_menu()
-        choice = get_choice()
-         
 
 
 
@@ -101,9 +91,9 @@ def create_user_account():
     password = input('Enter desired password: ')
     print("Account successfully created!")
     print(f'Name: {first_name} + {last_name}, Username: {username}')
-    return (first_name, last_name, username, password)
+    return first_name, last_name, username, password
 
-def display_account_info():
+def display_account_info(first_name, last_name, username):
     print('Account Information')
     print(f'First Name: {first_name}')
     print(f'Last Name: {last_name}')
@@ -114,5 +104,5 @@ def display_account_info():
 
 
 
-run_logged_out_menu()                                 
+navigate_menu(logged_in)                             
 
