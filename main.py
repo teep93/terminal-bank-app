@@ -10,12 +10,14 @@ welcome_ascii = """
  \$$      \$$  \$$$$$$$ \$$  \$$$$$$$  \$$$$$$  \$$  \$$  \$$  \$$$$$$$          \$$$$   \$$$$$$        \$$   \$$ \$$   \$$ \$$         \$$$$$$$   \$$$$$$$ \$$   \$$ \$$   \$$
 """
 
+
 username = ''
 password = ''
 account_list_and_balance = {}
 wallet = 0
-firstname = ''
-lastname = ''
+first_name = ''
+last_name = ''
+full_name = first_name + last_name
 logged_in = False
 
 
@@ -26,8 +28,8 @@ def logged_out_menu():
     print('3. Exit')
 
 def logged_in_menu():
-    print(welcome_ascii)
-    print(f'Welcome back,{firstname}! What would you like to do today?')
+    global first_name, last_name
+    print(f'Welcome back, {first_name} {last_name}! What would you like to do today?')
     print('1. View Accounts')
     print('2. Transfer Funds')
     print('3. Open Accounts')
@@ -67,9 +69,10 @@ def navigate_menu(logged_in):
     
 
 def log_in():
-    username = input('Enter your username: ')
-    password = input('Enter your password: ')
-    if username == username and password == password:
+    global username, password
+    input_username = input('Enter your username: ')
+    input_password = input('Enter your password: ')
+    if input_username == username and input_password == password:
         print('Login successful.')
         navigate_menu(logged_in=True)
     else:    
@@ -84,16 +87,18 @@ def exit():
 
 
 def create_user_account():
+    global first_name, last_name, username, password
     print('Create an Account')
     first_name = input('Enter your first name: ')
     last_name = input('Enter your last name: ')
     username = input('Enter desired username: ')
     password = input('Enter desired password: ')
     print("Account successfully created!")
-    print(f'Name: {first_name} + {last_name}, Username: {username}')
+    print(f'Name: {first_name} {last_name}, Username: {username}')
     return first_name, last_name, username, password
 
-def display_account_info(first_name, last_name, username):
+def display_account_info():
+    global first_name, last_name, username
     print('Account Information')
     print(f'First Name: {first_name}')
     print(f'Last Name: {last_name}')
