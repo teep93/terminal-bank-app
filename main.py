@@ -69,6 +69,10 @@ def navigate_menu(logged_in):
             elif choice == '2':
                 log_in()
             elif choice == '3':
+                print(printing_seperator)
+                print("Goodbye!")
+                print("Exiting...")
+                print(printing_seperator)
                 exit()
             else:
                 print('Invalid choice. Please enter 1, 2, or 3.')
@@ -100,9 +104,7 @@ def log_in():
     else:    
         print('Invalid username or password. Please try again.')    
 
-def exit():
-    print('Exiting...')
-    exit()
+
 
 
 
