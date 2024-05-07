@@ -13,8 +13,7 @@ welcome_ascii = """
 printing_seperator = "----------------------------------------------------------------------------------------------"
 username = ''
 password = ''
-account_list_and_balance = {}
-wallet = 0
+account_list_and_balance = {'Nhi-Wallet': 1000}
 first_name = ''
 last_name = ''
 full_name = first_name + last_name
@@ -75,16 +74,17 @@ def navigate_menu(logged_in):
                 print(printing_seperator)
                 exit()
             else:
+                print(printing_seperator)
                 print('Invalid choice. Please enter 1, 2, or 3.')
+                print(printing_seperator)
 
 
 def view_accounts():
     if bool(account_list_and_balance):
-        print(account_list_and_balance)
-    else:
         print(printing_seperator)
-        print("You have no accounts") 
-        print(printing_seperator)    
+        print("Your active accounts and balances")
+        print(account_list_and_balance)
+        print(printing_seperator)
 
 def transfer_funds():
     pass
