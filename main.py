@@ -20,6 +20,7 @@ account_list_and_balance = {'Nhi-Wallet': 1000}
 first_name = ''
 last_name = ''
 logged_in = False
+login_counter = 0
 
 
 def logged_out_menu():
@@ -31,13 +32,21 @@ def logged_out_menu():
     print(printing_separator)
 
 def logged_in_menu():
-    global first_name, last_name
-    print(printing_separator)
-    print(f'Welcome back, {first_name} {last_name}! What would you like to do today?')
+    global first_name, last_name, login_counter
+    first_login_message = (f'Welcome back, {first_name} {last_name}! What would you like to do today?')
+    general_login_message = ('What else would you like to do today?')
+    login_counter += 1
+    if login_counter <= 1:
+        print(printing_separator)
+        print(first_login_message)
+    else:
+        print(printing_separator)
+        print(general_login_message) 
     print('1. View Accounts')
     print('2. Transfer Funds')
     print('3. Open Accounts')
-    print('4. Log Out')
+    print('4. Transaction History')
+    print('5. Log Out')
     print(printing_separator)
 
 def navigate_menu(logged_in):
@@ -50,6 +59,7 @@ def navigate_menu(logged_in):
         choice = input('Please enter your choice: ')
 
         if logged_in:
+            global login_counter
             if choice == '1':
                 view_accounts()
             elif choice == '2':
@@ -57,6 +67,9 @@ def navigate_menu(logged_in):
             elif choice == '3':
                 open_product_accounts()
             elif choice == '4':
+                view_transactions()    
+            elif choice == '5':
+                login_counter = 0
                 print(printing_separator)
                 print("Logging out...")
                 print("Successfully logged out.")
@@ -64,7 +77,7 @@ def navigate_menu(logged_in):
                 navigate_menu(logged_in=False)
             else:
                 print(printing_separator)
-                print('Invalid choice. Please enter 1, 2, 3, or 4.')
+                print('Invalid choice. Please enter 1, 2, 3, 4, or 5.')
                 print(printing_separator)
         else:
             if choice == '1':
@@ -94,6 +107,9 @@ def transfer_funds():
     pass
 
 def open_product_accounts():
+    pass
+
+def view_transactions():
     pass
 
     
