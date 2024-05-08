@@ -116,18 +116,20 @@ def view_transactions():
 def log_in():
     global username, password
     print(printing_separator)
-    input_username = input('Enter your username: ')
-    input_password = getpass.getpass('Enter your password: ')
-    print(printing_separator)
-    if input_username == username and input_password == password:
+    while True:
+        input_username = input('Enter your username: ')
+        input_password = getpass.getpass('Enter your password: ')
         print(printing_separator)
-        print('Login successful.')
-        print(printing_separator)
-        navigate_menu(logged_in=True)
-    else:
-        print(printing_separator)    
-        print('Invalid username or password. Please try again.') 
-        print(printing_separator)   
+        if input_username == username and input_password == password:
+            print(printing_separator)
+            print('Login successful.')
+            print(printing_separator)
+            navigate_menu(logged_in=True)
+            break
+        else:
+            print(printing_separator)    
+            print('Invalid username or password. Please try again.') 
+            print(printing_separator)   
 
 
 
