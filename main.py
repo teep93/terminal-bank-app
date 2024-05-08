@@ -1,5 +1,5 @@
 import getpass
-
+import datetime
 
 welcome_ascii = """
  __       __            __                                                      __                      __    __  __        __          _______                       __       
@@ -32,16 +32,16 @@ def logged_out_menu():
     print(printing_separator)
 
 def logged_in_menu():
-    global first_name, last_name, login_counter
+    global first_name, last_name, login_counter, current_datetime
     first_login_message = (f'Welcome back, {first_name} {last_name}! What would you like to do today?')
-    general_login_message = ('What else would you like to do today?')
+    general_login_message = (f'What else would you like to do today, {first_name}?')
     login_counter += 1
     if login_counter <= 1:
         print(printing_separator)
         print(first_login_message)
     else:
         print(printing_separator)
-        print(general_login_message) 
+        print(general_login_message)
     print('1. View Accounts')
     print('2. Transfer Funds')
     print('3. Open Accounts')
@@ -99,7 +99,6 @@ def navigate_menu(logged_in):
 def view_accounts():
         print(printing_separator)
         print("Your active accounts and balances.")
-        print("All currency in Nhi-Dollars.")
         print(account_list_and_balance)
         print(printing_separator)
 
@@ -139,10 +138,18 @@ def log_in():
 def create_user_account():
     global first_name, last_name, username, password
     print('Create an Account')
-    first_name = input('Enter your first name: ')
-    last_name = input('Enter your last name: ')
+    first_name = input('Enter your first name: ').capitalize()
+    last_name = input('Enter your last name: ').capitalize()
     username = input('Enter desired username: ')
-    password = input('Enter desired password: ')
+    while True:
+        password = getpass.getpass('Enter desired password: ')
+        confirm_password = getpass.getpass('Confirm password: ')
+
+        if password == confirm_password:
+            print("Passwords match! Proceeding...")
+            break
+        else:
+            print("Passwords do not match. Please try again.")
     print(printing_separator)
     print("Account successfully created!")
     print(f'Name: {first_name} {last_name}')
