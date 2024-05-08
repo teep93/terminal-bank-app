@@ -6,6 +6,7 @@ This is a simulated banking application that runs in the terminal. A digital wal
 ## Features
 
 ### Account Creation
+![Account Creation Image](./docs/account-creation.png)
 This feature will allow the user to create an account with an input prompt. They will enter a first name, last name, username and password which will be stored in global variables.
 Global variables are only used for important account information that need to be accessed by functions to display user information (full name), accounts the user has opened, account balances, account
 transactions and account information (username and password). Any other variables outside of previous important information will be stored for use in their relevant functions locally.
