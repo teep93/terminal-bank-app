@@ -16,7 +16,7 @@ welcome_ascii = """
 printing_separator = "-------------------------------------------------------------------------------"
 username = ''
 password = ''
-account_list_and_balance = {'Nhi-Wallet': 1000}
+account_list_and_balance = {'Nhi-Wallet': 5000}
 first_name = ''
 last_name = ''
 logged_in = False
@@ -71,8 +71,8 @@ def navigate_menu(logged_in):
             elif choice == '5':
                 login_counter = 0
                 print(printing_separator)
-                print("Logging out...")
-                print("Successfully logged out.")
+                print('Logging out...')
+                print('Successfully logged out.')
                 print(printing_separator)
                 navigate_menu(logged_in=False)
             else:
@@ -86,8 +86,8 @@ def navigate_menu(logged_in):
                 log_in()
             elif choice == '3':
                 print(printing_separator)
-                print("Goodbye!")
-                print("Exiting...")
+                print('Goodbye!')
+                print('Exiting...')
                 print(printing_separator)
                 exit()
             else:
@@ -98,9 +98,17 @@ def navigate_menu(logged_in):
 
 def view_accounts():
         print(printing_separator)
-        print("Your active accounts and balances.")
+        print('Your active accounts and balances.')
         print(account_list_and_balance)
         print(printing_separator)
+        while True:
+            choice = getpass.getpass('Press ENTER to return to the menu.')
+            if choice:
+                print('Returning to menu...')
+                print(printing_separator)
+                break
+            else:
+                break    
 
 def transfer_funds():
     pass
@@ -108,10 +116,10 @@ def transfer_funds():
 def open_product_accounts():
     global account_list_and_balance
     print(printing_separator)
-    print("Please select an account to open")
-    print("1. Transaction Account")
-    print("2. Savings Account")
-    print("3. Exit")    
+    print('Please select an account to open')
+    print('1. Transaction Account')
+    print('2. Savings Account')
+    print('3. Exit')    
     while True:
         choice = input('Please input your choice: ')
         if choice == '1':
@@ -125,7 +133,7 @@ def open_product_accounts():
             print(printing_separator)
             break
         elif choice == '3':
-            print("Returning to menu...")
+            print('Returning to menu...')
             print(printing_separator)
             break
         else:    
@@ -184,13 +192,7 @@ def create_user_account():
     print(printing_separator)
     return first_name, last_name, username, password
 
-def display_account_info():
-    global first_name, last_name, username
-    print('Account Information')
-    print(f'First Name: {first_name}')
-    print(f'Last Name: {last_name}')
-    print(f'Username: {username}')
-    print(f'Account Balances')
+
 
 
 
