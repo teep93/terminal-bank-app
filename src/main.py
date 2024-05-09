@@ -113,10 +113,6 @@ def view_accounts():
 
 def transfer_funds():
     global accounts_and_balance
-    temporary_account_list = []
-    transfer_amount = None
-    from_account = {}
-    to_account = {}
     while True:
         if len(accounts_and_balance) <= 1:
             print("You do not have enough accounts for a transfer.")
@@ -124,46 +120,42 @@ def transfer_funds():
             print(printing_separator)
             break
         else:
-            for outer_index, (key, value) in enumerate(accounts_and_balance.items(), start=1):
-                print(printing_separator)
-                print(f'{outer_index}. {key}: ${value}')
-                print(printing_separator)            
-            temporary_account_list.append(accounts_and_balance)
-            temporary_account_list_length = len(temporary_account_list)
+            for index, (key, value) in enumerate(accounts_and_balance.items(), start=1):
+                print(f'{index}. {key}: ${value}')
+            try:
+                from_account_index = int(input("Please select an account to transfer FROM: "))   
+                to_account_index = int(input("Please select an account to transfer TO: "))
+                transfer_amount = float(input("Enter the amount to transfer: "))
+            except ValueError:
+                print("Invalid input. Please enter a valid number")
+                continue
+            if not (0 <= from_account_index < len(accounts_and_balance)) or not (0 <= to_account_index < len(accounts_and_balance)):   
+                print("Invalid account selection.")
+                continue
+            from_account = list(accounts_and_balance.keys())[from_account_index]
+            to_account = list(accounts_and_balance.keys())[to_account_index]
+            if transfer_amount <= 0:
+                print("Invalid transfer amount. Please enter positive number.")
+                continue
+            if transfer_amount > accounts_and_balance[from_account]:
+                print("Insufficient funds.")
+                continue
+            accounts_and_balance[from_account] -= transfer_amount
+            accounts_and_balance[to_account] += transfer_amount
+            print("Transfer successful")
 
-            while True:
-                for inner_index, temporary_account in enumerate(temporary_account_list, start=1):
-                    try:
-                        selected_index_from = int(input("Please select an account to transfer FROM: "))
-                        if 0 <= from_account < temporary_account_list_length:
-                            from_account = temporary_account_list[selected_index_from]
-                            print(f"You have selected {inner_index}. {temporary_account}")
-                            continue
-                        else:
-                            print(f"Invalid input. Please select an account listed from 1 - {temporary_account_list_length}.")
-                            print(printing_separator)
-                    except ValueError:
-                        print("Invalid input. Please enter a number.")
-                        print(printing_separator)
-                    try:            
-                        selected_index_to = int(input("Please select an account to transfer TO: "))
-                        if 0 <= to_account < temporary_account_list_length:
-                            to_account = temporary_account_list[selected_index_to]
-                            print(f"You have selected {inner_index}. {temporary_account}")
-                            continue
-                        else:
-                            print(f"Invalid input. Please select an account listed from 1 - {temporary_account_list_length}.")
-                            print(printing_separator)
-                    except ValueError:
-                        print("Invalid input. Please enter a number.")
-                        print(printing_separator)
-                transfer_amount = input("Enter the amount: ")
-                value_in_from_account = next(iter(from_account.values()))
-                if transfer_amount >= value_in_from_account or transfer_amount < 1:
-                    print("Please enter a valid amount.")
-                    print(printing_separator)
-                else:
-                    pass    
+
+
+
+
+
+
+
+
+
+
+
+
 
                         
                 
@@ -172,7 +164,7 @@ def transfer_funds():
 
 
 def open_product_accounts():
-    global account_list_and_balance
+    global accounts_and_balance
     print(printing_separator)
     print('Please select an account to open')
     print('1. Transaction Account')
@@ -181,12 +173,12 @@ def open_product_accounts():
     while True:
         choice = input('Please input your choice: ')
         if choice == '1':
-            account_list_and_balance['Transaction Account'] = 0
+            accounts_and_balance['Transaction Account'] = 0
             print('Transaction Account successfully opened!')
             print(printing_separator)
             break
         elif choice == '2':
-            account_list_and_balance['Savings Account'] = 0
+            accounts_and_balance['Savings Account'] = 0
             print('Savings Account successfully opened!')
             print(printing_separator)
             break
