@@ -13,11 +13,10 @@ welcome_ascii = """
  \$$   \$$ \$$   \$$ \$$         \$$$$$$$   \$$$$$$$ \$$   \$$ \$$   \$$
 """
 
-menu_printing_separator = "-------------------------------------------------------------------------------"
-notification_printing_separator = "*******************************************************************************"
+menu_printing_separator = '-------------------------------------------------------------------------------'
+notification_printing_separator = '*******************************************************************************'
 username = ''
 password = ''
-# wallet = {'Nhi-Wallet': 5000}
 accounts_and_balance = {'Nhi-Wallet': 5000}
 account_list = []
 first_name = ''
@@ -50,7 +49,7 @@ def logged_in_menu():
     print('3. Open Accounts')
     print('4. Transaction History')
     print('5. Log Out')
-    print(printing_separator)
+    print(menu_printing_separator)
 
 def navigate_menu(logged_in):
     while True:
@@ -105,7 +104,7 @@ def view_accounts():
         print(accounts_and_balance)
         print(menu_printing_separator)
         while True:
-            choice = getpass.getpass('Press "q" to return to the menu.')
+            choice = getpass.getpass('Press any key + ENTER to return to the menu.')
             if choice:
                 print('Returning to menu...')
                 print(notification_printing_separator)
@@ -115,49 +114,50 @@ def transfer_funds():
     global accounts_and_balance
     while True:
         if len(accounts_and_balance) <= 1:
-            print("You do not have enough accounts for a transfer.")
-            print("Please open more.")
+            print('You do not have enough accounts for a transfer.')
+            print('Please open more.')
             print(notification_printing_separator)
             break
         else:
             for index, (key, value) in enumerate(accounts_and_balance.items(), start=1):
                 print(f'{index}. {key}: ${value}')
             try:
-                from_account_index = int(input("Please select an account to transfer FROM: ")) - 1
-                to_account_index = int(input("Please select an account to transfer TO: ")) - 1
-                transfer_amount = float(input("Enter the amount to transfer: "))
+                from_account_index = int(input('Please select an account to transfer FROM: ')) - 1
+                to_account_index = int(input('Please select an account to transfer TO: ')) - 1
+                transfer_amount = float(input('Enter the amount to transfer: '))
             except ValueError:
                 print(notification_printing_separator)
-                print("Invalid input. Please enter a valid number")
+                print('Invalid input. Please enter a valid number')
                 print(notification_printing_separator)
                 continue
             if not (0 <= from_account_index < len(accounts_and_balance)) or not (0 <= to_account_index < len(accounts_and_balance)):
                 print(notification_printing_separator)   
-                print("Invalid account selection.")
+                print('Invalid account selection.')
                 print(notification_printing_separator)
                 continue
             from_account = list(accounts_and_balance.keys())[from_account_index]
             to_account = list(accounts_and_balance.keys())[to_account_index]
             if transfer_amount <= 0:
                 print(notification_printing_separator)
-                print("Invalid transfer amount. Please enter positive number.")
+                print('Invalid transfer amount. Please enter positive number.')
                 print(notification_printing_separator)
                 continue
             if transfer_amount > accounts_and_balance[from_account]:
                 print(notification_printing_separator)
-                print("Insufficient funds.")
+                print('Insufficient funds.')
                 print(notification_printing_separator)
                 continue
             accounts_and_balance[from_account] -= transfer_amount
             accounts_and_balance[to_account] += transfer_amount
             print(notification_printing_separator)
-            print("Transfer successful")
+            print('Transfer successful')
             print(notification_printing_separator)
-            print(f"Balance for {from_account}: ${accounts_and_balance[from_account]}")
-            print(f"Balance for {to_account}: ${accounts_and_balance[to_account]}")
+            print(f'Balance for {from_account}: ${accounts_and_balance[from_account]}')
+            print(f'Balance for {to_account}: ${accounts_and_balance[to_account]}')
             print(notification_printing_separator)
-        choice = getpass.getpass('Press "q" to return to the menu.')
+        choice = getpass.getpass('Press any key + ENTER to return to the menu.')
         if choice:
+            print(notification_printing_separator)
             print('Returning to menu...')
             print(notification_printing_separator)
             break            
@@ -174,15 +174,18 @@ def open_product_accounts():
         choice = input('Please input your choice: ')
         if choice == '1':
             accounts_and_balance['Transaction Account'] = 0
+            print(notification_printing_separator)
             print('Transaction Account successfully opened!')
             print(notification_printing_separator)
             break
         elif choice == '2':
             accounts_and_balance['Savings Account'] = 0
+            print(notification_printing_separator)
             print('Savings Account successfully opened!')
             print(notification_printing_separator)
             break
         elif choice == '3':
+            print(notification_printing_separator)
             print('Returning to menu...')
             print(notification_printing_separator)
             break
@@ -231,12 +234,17 @@ def create_user_account():
         confirm_password = getpass.getpass('Confirm password: ')
 
         if password == confirm_password:
-            print("Passwords match! Proceeding...")
+            print(notification_printing_separator)
+            print('Passwords match! Proceeding...')
+            print(notification_printing_separator)
             break
         else:
-            print("Passwords do not match. Please try again.")
+            print(notification_printing_separator)
+            print('Passwords do not match. Please try again.')
+            print(notification_printing_separator)
     print(notification_printing_separator)
-    print("Account successfully created!")
+    print('Account successfully created!')
+    print(notification_printing_separator)
     print(f'Name: {first_name} {last_name}')
     print(f'Username: {username}')
     print(notification_printing_separator)
