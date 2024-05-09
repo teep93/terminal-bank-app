@@ -16,7 +16,9 @@ welcome_ascii = """
 printing_separator = "-------------------------------------------------------------------------------"
 username = ''
 password = ''
-account_list_and_balance = {'Nhi-Wallet': 5000}
+wallet = {'Nhi-Wallet': 5000}
+accounts_and_balance = {}
+account_list = []
 first_name = ''
 last_name = ''
 logged_in = False
@@ -99,7 +101,8 @@ def navigate_menu(logged_in):
 def view_accounts():
         print(printing_separator)
         print('Your active accounts and balances.')
-        print(account_list_and_balance)
+        print(wallet)
+        print(accounts_and_balance)
         print(printing_separator)
         while True:
             choice = getpass.getpass('Press ENTER to return to the menu.')
@@ -107,11 +110,66 @@ def view_accounts():
                 print('Returning to menu...')
                 print(printing_separator)
                 break
-            else:
-                break    
 
 def transfer_funds():
-    pass
+    global accounts_and_balance
+    temporary_account_list = []
+    transfer_amount = None
+    from_account = {}
+    to_account = {}
+    while True:
+        if len(accounts_and_balance) <= 1:
+            print("You do not have enough accounts for a transfer.")
+            print("Please open more.")
+            print(printing_separator)
+            break
+        else:
+            for outer_index, (key, value) in enumerate(accounts_and_balance.items(), start=1):
+                print(printing_separator)
+                print(f'{outer_index}. {key}: ${value}')
+                print(printing_separator)            
+            temporary_account_list.append(accounts_and_balance)
+            temporary_account_list_length = len(temporary_account_list)
+
+            while True:
+                for inner_index, temporary_account in enumerate(temporary_account_list, start=1):
+                    try:
+                        selected_index_from = int(input("Please select an account to transfer FROM: "))
+                        if 0 <= from_account < temporary_account_list_length:
+                            from_account = temporary_account_list[selected_index_from]
+                            print(f"You have selected {inner_index}. {temporary_account}")
+                            continue
+                        else:
+                            print(f"Invalid input. Please select an account listed from 1 - {temporary_account_list_length}.")
+                            print(printing_separator)
+                    except ValueError:
+                        print("Invalid input. Please enter a number.")
+                        print(printing_separator)
+                    try:            
+                        selected_index_to = int(input("Please select an account to transfer TO: "))
+                        if 0 <= to_account < temporary_account_list_length:
+                            to_account = temporary_account_list[selected_index_to]
+                            print(f"You have selected {inner_index}. {temporary_account}")
+                            continue
+                        else:
+                            print(f"Invalid input. Please select an account listed from 1 - {temporary_account_list_length}.")
+                            print(printing_separator)
+                    except ValueError:
+                        print("Invalid input. Please enter a number.")
+                        print(printing_separator)
+                transfer_amount = input("Enter the amount: ")
+                value_in_from_account = next(iter(from_account.values()))
+                if transfer_amount >= value_in_from_account or transfer_amount < 1:
+                    print("Please enter a valid amount.")
+                    print(printing_separator)
+                else:
+                    pass    
+
+                        
+                
+
+
+
 
 def open_product_accounts():
     global account_list_and_balance
