@@ -2,18 +2,18 @@ import getpass
 import datetime
 
 welcome_ascii = """
- __       __            __                                                      __                      __    __  __        __          _______                       __       
-|  \  _  |  \          |  \                                                    |  \                    |  \  |  \|  \      |  \        |       \                     |  \      
-| $$ / \ | $$  ______  | $$  _______   ______   ______ ____    ______         _| $$_     ______        | $$\ | $$| $$____   \$$        | $$$$$$$\  ______   _______  | $$   __ 
-| $$/  $\| $$ /      \ | $$ /       \ /      \ |      \    \  /      \       |   $$ \   /      \       | $$$\| $$| $$    \ |  \ ______ | $$__/ $$ |      \ |       \ | $$  /  \\
-| $$  $$$\ $$|  $$$$$$\| $$|  $$$$$$$|  $$$$$$\| $$$$$$\$$$$\|  $$$$$$\       \$$$$$$  |  $$$$$$\      | $$$$\ $$| $$$$$$$\| $$|      \| $$    $$  \$$$$$$\| $$$$$$$\| $$_/  $$
-| $$ $$\$$\$$| $$    $$| $$| $$      | $$  | $$| $$ | $$ | $$| $$    $$        | $$ __ | $$  | $$      | $$\$$ $$| $$  | $$| $$ \$$$$$$| $$$$$$$\ /      $$| $$  | $$| $$   $$ 
-| $$$$  \$$$$| $$$$$$$$| $$| $$_____ | $$__/ $$| $$ | $$ | $$| $$$$$$$$        | $$|  \| $$__/ $$      | $$ \$$$$| $$  | $$| $$        | $$__/ $$|  $$$$$$$| $$  | $$| $$$$$$\\
-| $$$    \$$$ \$$     \| $$ \$$     \ \$$    $$| $$ | $$ | $$ \$$     \         \$$  $$ \$$    $$      | $$  \$$$| $$  | $$| $$        | $$    $$ \$$    $$| $$  | $$| $$  \$$\\
- \$$      \$$  \$$$$$$$ \$$  \$$$$$$$  \$$$$$$  \$$  \$$  \$$  \$$$$$$$          \$$$$   \$$$$$$        \$$   \$$ \$$   \$$ \$$         \$$$$$$$   \$$$$$$$ \$$   \$$ \$$   \$$
+ __    __  __        __          _______                       __       
+|  \  |  \|  \      |  \        |       \                     |  \      
+| $$\ | $$| $$____   \$$        | $$$$$$$\  ______   _______  | $$   __ 
+| $$$\| $$| $$    \ |  \ ______ | $$__/ $$ |      \ |       \ | $$  /  \\
+| $$$$\ $$| $$$$$$$\| $$|      \| $$    $$  \$$$$$$\| $$$$$$$\| $$_/  $$
+| $$\$$ $$| $$  | $$| $$ \$$$$$$| $$$$$$$\ /      $$| $$  | $$| $$   $$ 
+| $$ \$$$$| $$  | $$| $$        | $$__/ $$|  $$$$$$$| $$  | $$| $$$$$$\\
+| $$  \$$$| $$  | $$| $$        | $$    $$ \$$    $$| $$  | $$| $$  \$$\\
+ \$$   \$$ \$$   \$$ \$$         \$$$$$$$   \$$$$$$$ \$$   \$$ \$$   \$$
 """
 
-printing_separator = "----------------------------------------------------------------------------------------------"
+printing_separator = "-------------------------------------------------------------------------------"
 username = ''
 password = ''
 account_list_and_balance = {'Nhi-Wallet': 1000}
@@ -106,7 +106,32 @@ def transfer_funds():
     pass
 
 def open_product_accounts():
-    pass
+    global account_list_and_balance
+    print(printing_separator)
+    print("Please select an account to open")
+    print("1. Transaction Account")
+    print("2. Savings Account")
+    print("3. Exit")    
+    while True:
+        choice = input('Please input your choice: ')
+        if choice == '1':
+            account_list_and_balance['Transaction Account'] = 0
+            print('Transaction Account successfully opened!')
+            print(printing_separator)
+            break
+        elif choice == '2':
+            account_list_and_balance['Savings Account'] = 0
+            print('Savings Account successfully opened!')
+            print(printing_separator)
+            break
+        elif choice == '3':
+            print("Returning to menu...")
+            print(printing_separator)
+            break
+        else:    
+            print(printing_separator)
+            print('Invalid choice. Please enter 1, 2, or 3.')
+            print(printing_separator)
 
 def view_transactions():
     pass
