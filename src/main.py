@@ -1,5 +1,7 @@
 import getpass
 import datetime
+import random
+import math
 
 WELCOME_ASCII = """
  __    __  __        __          _______                       __       
