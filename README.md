@@ -75,7 +75,6 @@ To run the program, please follow these steps:
 Download git repo
 
 ```bash
-#!/bin/bash
 
 git clone https://github.com/teep93/terminal-bank-app.git
 
@@ -84,7 +83,6 @@ git clone https://github.com/teep93/terminal-bank-app.git
 Navigate to source folder
 
 ```bash
-#!/bin/bash
 
 cd src
 
@@ -93,7 +91,6 @@ cd src
 Check if using correct version of python (3.10 or later)
 
 ```bash
-#!/bin/bash
 
 python3 --version
 
@@ -102,7 +99,6 @@ python3 --version
 Run main.py file
 
 ```bash
-#!/bin/bash
 
 python3 main.py
 ```
