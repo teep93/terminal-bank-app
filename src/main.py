@@ -278,7 +278,7 @@ def create_user_account():
 
     This function does not take any arguments.
      
-    This function returns the user's names, username and password.
+    This function returns the user's names, username and password.g
 
     """
     global first_name, last_name, username, password
