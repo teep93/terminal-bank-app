@@ -7,10 +7,8 @@ This is a simulated banking application that runs in the terminal. A digital wal
 
 ### Account Management
 
-<div style="display: flex;">
-    <img src="/docs/account-creation.png" alt="Account Creation" style="width: 50%;">
-    <img src="/docs/log-in.png" alt="Log In" style="width: 50%;">
-</div>
+![Account Creation](/docs/account-creation.png){: style="float: left; width: 50%;"}
+![Log In](/docs/log-in.png){: style="float: right; width: 50%;"}
 
 This feature will allow the user to create an account with an input prompt. They will enter a first name, last name, username and password which will be stored in global variables.
 Global variables are only used for important account information that need to be accessed by functions to display user information (full name), accounts the user has opened, account balances, account
@@ -22,5 +20,5 @@ for a password and confirmation of password which it then checks if both passwor
 
 ### Login to Existing Account
 
-### Transaction History
+### Transaction Historygit
 
