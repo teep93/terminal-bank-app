@@ -1,7 +1,7 @@
 import getpass
 import datetime
 
-welcome_ascii = """
+WELCOME_ASCII = """
  __    __  __        __          _______                       __       
 |  \  |  \|  \      |  \        |       \                     |  \      
 | $$\ | $$| $$____   \$$        | $$$$$$$\  ______   _______  | $$   __ 
@@ -28,14 +28,28 @@ formatted_time = current_datetime.strftime('%H:%M')
 
 
 def logged_out_menu():
+    """Initial menu when simulation is started.
+
+    Also the menu that the user is returned to upon logging out of their account.
+
+    This function takes no arguments and does not return anything.
+    """
     print(MENU_PRINTING_SEPARATOR)
-    print(welcome_ascii) 
+    print(WELCOME_ASCII) 
     print('1. Create a new account')
     print('2. Log in')
     print('3. Exit')
     print(MENU_PRINTING_SEPARATOR)
 
 def logged_in_menu():
+    """The menu that is loaded when a user successfully creates and logs in to an account.
+
+    Uses the login_counter variable to check if user has logged in for the first time or not
+    and adjusts the welcome message accordingly. Presents the current time and options for the
+    user to select.
+
+    This function takes no arguments and does not return anything.
+    """
     global login_counter, first_name, last_name
     first_login_message = (f'Welcome back, {first_name} {last_name}! What would you like to do today?')
     general_login_message = (f'What else would you like to do today, {first_name}?')
@@ -54,6 +68,22 @@ def logged_in_menu():
     print(MENU_PRINTING_SEPARATOR)
 
 def navigate_menu(logged_in):
+    """Persistant menu that checks if user is currently logged in or not.
+
+    It will present 2 different menus depending on whether or not user has
+    logged into their account with different choices.
+
+    Args:
+        logged_in (bool): When starting the program, logged_in is always set to false
+        to help prompt the user to create an account and to simulate a fresh start
+        of a banking application. Upon successfully creating an account and logging in,
+        logged_in is set to True to allow user to view relevant menu and select options relevant to a
+        logged in user. Choosing the log out option will set logged_in to False to take user
+        back to the logged_out_menu.
+
+    Return:
+        This function does not return anything.    
+    """
     while True:
         if logged_in:
             logged_in_menu()
@@ -99,6 +129,14 @@ def navigate_menu(logged_in):
 
 
 def view_accounts():
+    """Allows user to view current accounts.
+
+    Prints the accounts_and_balance dict that only initially contains their
+    wallet and starting funds. As the user chooses to add more accounts, these
+    accounts will be viewable.
+
+    This function does not take any arguments and does not return anything.
+    """
     print(MENU_PRINTING_SEPARATOR)
     print('Your active accounts and balances.')
     print(accounts_and_balance)
@@ -112,6 +150,14 @@ def view_accounts():
             break
 
 def transfer_funds():
+    """Allows the user to transfer funds between accounts.
+
+    Will create a persistant sub-menu that will first check if the user
+    has more than one account and check for invalid inputs. This will increment
+    and decrement the selected accounts the user chooses to transfer to and from.
+
+    This function does not take any arguments or returns anything.
+    """
     global accounts_and_balance
     while True:
         if len(accounts_and_balance) <= 1:
@@ -161,10 +207,13 @@ def transfer_funds():
             print(NOTIFICATION_PRINTING_SEPARATOR)
             print('Returning to menu...')
             print(NOTIFICATION_PRINTING_SEPARATOR)
-            break            
-
+            break
 
 def open_product_accounts():
+    """Allows user to open additional accounts.
+
+    This function does not take any arguments or returns anything.
+    """
     global accounts_and_balance
     print(MENU_PRINTING_SEPARATOR)
     print('Please select an account to open')
@@ -195,9 +244,15 @@ def open_product_accounts():
             print('Invalid choice. Please enter 1, 2, or 3.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
 
-   
-
 def log_in():
+    """This function will allow the user to log in.
+
+    It takes user inputs to set up a username and password.
+    If user input is correct it will evaluate logged_in to True 
+    and will allow the user to view the logged in menu.
+
+    This function does not take any arguments or returns anything.
+    """
     global username, password
     print(MENU_PRINTING_SEPARATOR)
     while True:
@@ -211,12 +266,19 @@ def log_in():
             navigate_menu(logged_in=True)
             break
         else:
-            print(NOTIFICATION_PRINTING_SEPARATOR)    
-            print('Invalid username or password. Please try again.') 
-            print(NOTIFICATION_PRINTING_SEPARATOR)   
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print('Invalid username or password. Please try again.')
+            print(NOTIFICATION_PRINTING_SEPARATOR)
 
 
 def create_user_account():
+    """Allows user to create an account.
+
+    This function takes user input for their full name, username and password.
+
+    This function does not take any arguments or returns anything.
+
+    """
     global first_name, last_name, username, password
     print('Create an Account')
     first_name = input('Enter your first name: ').capitalize()
@@ -243,13 +305,7 @@ def create_user_account():
     print(NOTIFICATION_PRINTING_SEPARATOR)
     return first_name, last_name, username, password
 
-
-
-
-
-
-
-navigate_menu(logged_in)                             
+navigate_menu(logged_in)          
 
 
 
