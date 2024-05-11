@@ -31,6 +31,8 @@ This feature has a major function that lets you navigate menu choices and is run
 
 ### Funds Transfer
 
+![Funds transfer](/docs/transfer-funds.png)
+
 This feature is a major function of the program. It takes the global variable of existing accounts and corresponding key value pairs. It first checks if the user has more than one account otherwise will break the while loop to return you to the previous menu, printing instructions to the user open more accounts. If the user has more than one account it will allow the loop to continue by running a for loop and assigning an index, key and value pair to a local variable of the same names with the enumerate function taking the dictionary's items and starting the index from one for user readability. I have put a try and except block for the following user inputs to select the accounts to transfer from, to, and the amount to handle invalid inputs. User inputs are converted to integers and having 1 subtracted from the integer to account for the starting index and assigned to a corresponding local variable. It will then check those variables (from, to, and amount) if they are valid inputs based on index and length of dictionary. The while loop will continue if so and convert the chosen to and from index variables into a list based off the value of the key (for dollar amounts) and assign those to a variable. The code will check if the transfer amount is valid before letting the user continue and loop back if the amount is invalid. This will then increment (to account) and decrement (from account) to update values that funds have been taken and transferred and will print to the user of the successful transfer and corresponding updated values of the accounts chosen and time completed.
 
 
@@ -96,11 +98,43 @@ python3 --version
 
 ```
 
+If required, install python3
+
+```bash
+
+sudo apt-update python3
+
+```
+
 Run main.py file
 
 ```bash
 
 python3 main.py
+```
+
+If in "src" directory, run script
+
+```bash
+
+chmod +x install.sh
+
+```
+
+Run the install command if first time using program, this will check if virtual environment is setup and if not, will install one
+
+```bash
+
+source ./install.sh --install
+
+```
+
+If returnin to program and already have virtual environment setup
+
+```bash
+
+source ./install.sh --launch
+
 ```
 
 ### System Requirements
