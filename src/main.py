@@ -99,16 +99,17 @@ def navigate_menu(logged_in):
 
 
 def view_accounts():
-        print(MENU_PRINTING_SEPARATOR)
-        print('Your active accounts and balances.')
-        print(accounts_and_balance)
-        print(MENU_PRINTING_SEPARATOR)
-        while True:
-            choice = getpass.getpass('Press any key + ENTER to return to the menu.')
-            if choice:
-                print('Returning to menu...')
-                print(NOTIFICATION_PRINTING_SEPARATOR)
-                break
+    print(MENU_PRINTING_SEPARATOR)
+    print('Your active accounts and balances.')
+    print(accounts_and_balance)
+    print(MENU_PRINTING_SEPARATOR)
+    while True:
+        choice = getpass.getpass('Press any key + ENTER to return to the menu.')
+        if choice:
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print('Returning to menu...')
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            break
 
 def transfer_funds():
     global accounts_and_balance
