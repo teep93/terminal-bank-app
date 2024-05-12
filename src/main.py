@@ -28,7 +28,6 @@ login_counter = 0
 current_datetime = datetime.datetime.now()
 formatted_time = current_datetime.strftime('%H:%M')
 
-
 def logged_out_menu():
     """Initial menu when simulation is started.
 
@@ -129,7 +128,6 @@ def navigate_menu(logged_in):
                 print('Invalid choice. Please enter 1, 2, or 3.')
                 print(NOTIFICATION_PRINTING_SEPARATOR)
 
-
 def view_accounts():
     """Allows user to view current accounts.
 
@@ -141,7 +139,8 @@ def view_accounts():
     """
     print(MENU_PRINTING_SEPARATOR)
     print('Your active accounts and balances.')
-    print(accounts_and_balance)
+    for index, (key, value) in enumerate(accounts_and_balance.items(), start=1):
+        print(f'{index}. {key}: ${value}')
     print(MENU_PRINTING_SEPARATOR)
     while True:
         choice = getpass.getpass('Press any key + ENTER to return to the menu.')
@@ -227,24 +226,26 @@ def open_product_accounts():
         if choice == '1':
             if transaction_account_limit >= 1:
                 print(NOTIFICATION_PRINTING_SEPARATOR)
-                print("Only one transaction account per user.")
+                print('Only one transaction account per user.')
                 print(NOTIFICATION_PRINTING_SEPARATOR)
             else:
                 accounts_and_balance['Transaction Account'] = 0
                 transaction_account_limit += 1
                 print(NOTIFICATION_PRINTING_SEPARATOR)
                 print(f'Transaction Account successfully opened at {formatted_time}!')
+                print('Would you like to open another account or exit?')
                 print(NOTIFICATION_PRINTING_SEPARATOR)  
         elif choice == '2':
             if savings_account_limit >= 1:
                 print(NOTIFICATION_PRINTING_SEPARATOR)
-                print("Only one savings account per user.")
+                print('Only one savings account per user.')
                 print(NOTIFICATION_PRINTING_SEPARATOR)
             else:
                 accounts_and_balance['Savings Account'] = 0
                 savings_account_limit += 1
                 print(NOTIFICATION_PRINTING_SEPARATOR)
                 print(f'Savings Account successfully opened at {formatted_time}!')
+                print('Would you like to open another account or exit?')
                 print(NOTIFICATION_PRINTING_SEPARATOR)  
         elif choice == '3':
             print(NOTIFICATION_PRINTING_SEPARATOR)
@@ -282,7 +283,6 @@ def log_in():
             print('Invalid username or password. Please try again.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
 
-
 def create_user_account():
     """Allows user to create an account.
 
@@ -299,11 +299,11 @@ def create_user_account():
         first_name = input('Enter your first name: ').strip().capitalize()
         if not first_name.isalpha():
             print(NOTIFICATION_PRINTING_SEPARATOR)
-            print("Please enter only letters for names.")
+            print('Please enter only letters for names.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
         elif len(first_name.split()) != 1:
             print(NOTIFICATION_PRINTING_SEPARATOR)
-            print("Please enter only one word for first names.")
+            print('Please enter only one word for first names.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
         else: 
             break
@@ -311,11 +311,11 @@ def create_user_account():
         last_name = input('Enter your last name: ').strip().capitalize()
         if not last_name.isalpha():
             print(NOTIFICATION_PRINTING_SEPARATOR)
-            print("Please enter only letters for names.")
+            print('Please enter only letters for names.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
         elif len(last_name.split()) != 1:
             print(NOTIFICATION_PRINTING_SEPARATOR)
-            print("Please enter only one word for last names.")
+            print('Please enter only one word for last names.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
         else: 
             break
@@ -323,7 +323,7 @@ def create_user_account():
         username = input('Enter desired username: ')
         if len(username) > 15 or len(username.split()) != 1:
             print(NOTIFICATION_PRINTING_SEPARATOR)
-            print("Invalid username, must not exceed 15 characters or contain spaces.")
+            print('Invalid username, must not exceed 15 characters or contain spaces.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
         else:
             break
@@ -333,7 +333,7 @@ def create_user_account():
 
         if len(password) > 20:
             print(NOTIFICATION_PRINTING_SEPARATOR)
-            print("Password too long, must not exceed 20 characters.")
+            print('Password too long, must not exceed 20 characters.')
             print(NOTIFICATION_PRINTING_SEPARATOR)
         elif password == confirm_password:
             print(NOTIFICATION_PRINTING_SEPARATOR)
