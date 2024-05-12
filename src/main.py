@@ -18,6 +18,8 @@ NOTIFICATION_PRINTING_SEPARATOR = '*********************************************
 username = ''
 password = ''
 accounts_and_balance = {'Nhi-Wallet': 5000}
+transaction_account_limit = 0
+savings_account_limit = 0
 account_list = []
 first_name = ''
 last_name = ''
@@ -214,7 +216,7 @@ def open_product_accounts():
 
     This function does not take any arguments or returns anything.
     """
-    global accounts_and_balance
+    global accounts_and_balance, transaction_account_limit, savings_account_limit
     print(MENU_PRINTING_SEPARATOR)
     print('Please select an account to open')
     print('1. Transaction Account')
@@ -223,17 +225,27 @@ def open_product_accounts():
     while True:
         choice = input('Please input your choice: ')
         if choice == '1':
-            accounts_and_balance['Transaction Account'] = 0
-            print(NOTIFICATION_PRINTING_SEPARATOR)
-            print(f'Transaction Account successfully opened at {formatted_time}!')
-            print(NOTIFICATION_PRINTING_SEPARATOR)
-            break
+            if transaction_account_limit >= 1:
+                print(NOTIFICATION_PRINTING_SEPARATOR)
+                print("Only one transaction account per user.")
+                print(NOTIFICATION_PRINTING_SEPARATOR)
+            else:
+                accounts_and_balance['Transaction Account'] = 0
+                transaction_account_limit += 1
+                print(NOTIFICATION_PRINTING_SEPARATOR)
+                print(f'Transaction Account successfully opened at {formatted_time}!')
+                print(NOTIFICATION_PRINTING_SEPARATOR)  
         elif choice == '2':
-            accounts_and_balance['Savings Account'] = 0
-            print(NOTIFICATION_PRINTING_SEPARATOR)
-            print(f'Savings Account successfully opened at {formatted_time}!')
-            print(NOTIFICATION_PRINTING_SEPARATOR)
-            break
+            if savings_account_limit >= 1:
+                print(NOTIFICATION_PRINTING_SEPARATOR)
+                print("Only one savings account per user.")
+                print(NOTIFICATION_PRINTING_SEPARATOR)
+            else:
+                accounts_and_balance['Savings Account'] = 0
+                savings_account_limit += 1
+                print(NOTIFICATION_PRINTING_SEPARATOR)
+                print(f'Savings Account successfully opened at {formatted_time}!')
+                print(NOTIFICATION_PRINTING_SEPARATOR)  
         elif choice == '3':
             print(NOTIFICATION_PRINTING_SEPARATOR)
             print('Returning to menu...')
@@ -319,7 +331,11 @@ def create_user_account():
         password = getpass.getpass('Enter desired password: ')
         confirm_password = getpass.getpass('Confirm password: ')
 
-        if password == confirm_password:
+        if len(password) > 20:
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print("Password too long, must not exceed 20 characters.")
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+        elif password == confirm_password:
             print(NOTIFICATION_PRINTING_SEPARATOR)
             print('Passwords match! Proceeding...')
             print(NOTIFICATION_PRINTING_SEPARATOR)
