@@ -1,7 +1,5 @@
 import getpass
 import datetime
-import random
-import math
 
 WELCOME_ASCII = """
  __    __  __        __          _______                       __       
@@ -62,7 +60,7 @@ def logged_in_menu():
     else:
         print(MENU_PRINTING_SEPARATOR)
         print(general_login_message)
-    print(f'The time is: {formatted_time}')
+    print(f'The time is {formatted_time}')
     print('1. View Accounts')
     print('2. Transfer Funds')
     print('3. Open Accounts')
@@ -280,14 +278,43 @@ def create_user_account():
 
     This function does not take any arguments.
      
-    This function returns the user's names, username and password.g
+    This function returns the user's names, username and password.
 
     """
     global first_name, last_name, username, password
     print('Create an Account')
-    first_name = input('Enter your first name: ').capitalize()
-    last_name = input('Enter your last name: ').capitalize()
-    username = input('Enter desired username: ')
+    while True:
+        first_name = input('Enter your first name: ').strip().capitalize()
+        if not first_name.isalpha():
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print("Please enter only letters for names.")
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+        elif len(first_name.split()) != 1:
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print("Please enter only one word for first names.")
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+        else: 
+            break
+    while True:            
+        last_name = input('Enter your last name: ').strip().capitalize()
+        if not last_name.isalpha():
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print("Please enter only letters for names.")
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+        elif len(last_name.split()) != 1:
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print("Please enter only one word for last names.")
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+        else: 
+            break
+    while True:            
+        username = input('Enter desired username: ')
+        if len(username) > 15 or len(username.split()) != 1:
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+            print("Invalid username, must not exceed 15 characters or contain spaces.")
+            print(NOTIFICATION_PRINTING_SEPARATOR)
+        else:
+            break
     while True:
         password = getpass.getpass('Enter desired password: ')
         confirm_password = getpass.getpass('Confirm password: ')
