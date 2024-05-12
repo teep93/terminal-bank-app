@@ -1,5 +1,6 @@
 #!bin/bash
 
+
 install() {
     echo "Please wait for verification of virtual environment..."
     if [ -d ".venv" ]; then
@@ -29,10 +30,10 @@ launch(){
 
 if [ "$1" = "--install" ]; then
     install
-    return 0
+    exit 0
 fi
 
 if [ "$1" = "--launch" ]; then
     launch
-    return 0
+    exit 0
 fi
