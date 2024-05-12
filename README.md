@@ -3,6 +3,7 @@
 [Link to github repo](https://github.com/teep93/terminal-bank-app)
 
 ## Project Description
+
 This is a simulated banking application that runs in the terminal. A digital wallet simulates the user's funds outside of the app. Users can create an account, log in, open accounts, withdraw/deposit/transfer funds to/from their wallet and accounts, and view their transaction history.
 
 ## Features
@@ -42,7 +43,7 @@ I have used Trello as the professional tool to track the implementation and plan
 
 ### Project Management
 
-[Link to Trello](https://trello.com/b/euHyLo7m/t1a3-terminal-application)
+[Link to Trello for project](https://trello.com/b/euHyLo7m/t1a3-terminal-application)
 
 ![Trello](/docs/trello-overview.png)
 
@@ -74,7 +75,7 @@ Each card would then be moved to a corresponding column to track whether the tas
 
 To run the program, please follow these steps:
 
-Download git repo
+Clone the repository:
 
 ```bash
 
@@ -82,7 +83,7 @@ git clone https://github.com/teep93/terminal-bank-app.git
 
 ```
 
-Navigate to source folder
+Navigate to source folder:
 
 ```bash
 
@@ -90,7 +91,7 @@ cd src
 
 ```
 
-Check if using correct version of python (3.10 or later)
+Check if using correct version of python (3.10 or later):
 
 ```bash
 
@@ -98,22 +99,16 @@ python3 --version
 
 ```
 
-If required, install python3
+If required, install python3:
 
 ```bash
 
-sudo apt-update python3
+sudo apt update
+sudo apt install python3 
 
 ```
 
-Run main.py file
-
-```bash
-
-python3 main.py
-```
-
-If in "src" directory, run script
+If in "src" directory, enable script to run:
 
 ```bash
 
@@ -121,7 +116,7 @@ chmod +x install.sh
 
 ```
 
-Run the install command if first time using program, this will check if virtual environment is setup and if not, will install one
+Run the install command if first time using program, this will check if virtual environment is setup and if not, will install one:
 
 ```bash
 
@@ -129,13 +124,17 @@ source ./install.sh --install
 
 ```
 
-If returnin to program and already have virtual environment setup
+If returning to program and already have virtual environment setup:
 
 ```bash
 
 source ./install.sh --launch
 
 ```
+
+### Dependencies
+
+No external dependencies required.
 
 ### System Requirements
 
@@ -148,3 +147,5 @@ This project follows the PEP8 styling guide.
 ## References
 
 Rossum, G 2013, PEP 8 – Style Guide for Python Code, Python Enhancement Proposals, viewed 10 May 2024, https://peps.python.org/pep-0008/
+
+Makwana, D, 2023, Automating Virtual Environments: Bash Script Magic For Python Developers, Medium, web log post, 12 August, viewed 11 May 2024, https://makwanadhruv.medium.com/automating-virtual-environments-bash-script-magic-for-python-developers-3a06df1777a6
