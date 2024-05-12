@@ -195,6 +195,7 @@ def transfer_funds():
                 print('Insufficient funds.')
                 print(NOTIFICATION_PRINTING_SEPARATOR)
                 continue
+            transfer_amount = round(transfer_amount, 2) 
             accounts_and_balance[from_account] -= transfer_amount
             accounts_and_balance[to_account] += transfer_amount
             print(NOTIFICATION_PRINTING_SEPARATOR)
